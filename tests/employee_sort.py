@@ -20,7 +20,8 @@ class EmployeeSort(AdminLoginFixture):
         )
 
         # waiting for url change
-        wait.until(expected_conditions.url_contains('/pim/viewEmployeeList'))
+        # wait.until(expected_conditions.url_contains('/pim/viewEmployeeList'))  #replaced by the next line
+        wait.until(expected_conditions.url_to_be(self.emp_info_page.PAGE_URL))
 
         # waiting for the table header and clicking
         wait.until(expected_conditions.presence_of_element_located((By.XPATH, '//th[3]/a'))).click()
