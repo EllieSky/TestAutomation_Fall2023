@@ -15,11 +15,18 @@ class DefineReportPage(BasePage):
             (By.ID, 'report_report_name'))).send_keys(report_name)
 
     def add_report_criteria(self, criteria):
-        Select(self.browser.find_element(
-            By.ID, 'report_criteria_list'
-        )).select_by_visible_text(criteria)
-        self.browser.find_element(By.ID, 'btnAddConstraint')
+        report_criteria_list = self.wait.until(EC.presence_of_element_located((By.ID, 'report_criteria_list')))
+        Select(report_criteria_list).select_by_visible_text(criteria)
+        self.browser.find_element(By.ID, 'btnAddConstraint').click()
 
     def set_selected_criteria_value__job_title(self, job_title):
         jt_select_elem = self.wait.until(EC.presence_of_element_located((By.ID, 'report_job_title')))
         Select(jt_select_elem).select_by_visible_text(job_title)
+
+    def add_display_fields(self, field):
+        report_display_field_list = self.wait.until(EC.presence_of_element_located((By.ID, 'report_display_field_list')))
+        Select(report_display_field_list).select_by_visible_text(field)
+        self.browser.find_element(By.ID, 'btnAddDisplayField').click()
+
+    def save(self):
+        self.browser.find_element(By.ID, 'btnSave').click()
