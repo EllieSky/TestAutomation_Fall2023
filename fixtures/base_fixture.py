@@ -6,7 +6,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 from lib.browser import get_browser
+from pages.define_report import DefineReportPage
 from pages.emp_info import EmployeeInfo
+from pages.emp_report import EmployeeReportPage
 from pages.login import LoginPage
 from tests import DOMAIN, DEFAULT_WAIT, BROWSER
 
@@ -19,6 +21,8 @@ class BaseFixture(unittest.TestCase):
 
         self.login_page = LoginPage(self.browser)
         self.emp_info_page = EmployeeInfo(self.browser)
+        self.emp_report = EmployeeReportPage(self.browser)
+        self.define_report = DefineReportPage(self.browser)
         # self.add_emp_page = AddEmployyPage(self.browser)
 
 
