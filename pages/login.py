@@ -1,10 +1,7 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.base_page import BasePage
-from tests import BASE_URL, DEFAULT_WAIT
+from tests import BASE_URL
 
 
 class LoginPage(BasePage):

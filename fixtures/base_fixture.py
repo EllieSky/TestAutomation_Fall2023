@@ -1,9 +1,6 @@
 import unittest
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
 
 from lib.browser import get_browser
 from pages.define_report import DefineReportPage
