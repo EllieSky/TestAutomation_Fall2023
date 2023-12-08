@@ -29,6 +29,11 @@ class EmployeeInfo(BasePage):
     select_job_title = (By.ID, 'empsearch_job_title')
     fld_emp_name = (By.ID, 'empsearch_employee_name_empName')
 
+    # TODO EY: move into menu object in the future
+    def open_reports(self):
+        self.wait.until(EC.presence_of_element_located(
+            (By.ID, 'menu_core_viewDefinedPredefinedReports'))).click()
+
     def get_table_data(self, column_number, row_number):
         locator = f'//tr[{row_number}]/td[{column_number}]'
         return self.browser.find_element(By.XPATH, locator).text
