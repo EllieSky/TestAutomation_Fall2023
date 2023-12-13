@@ -31,7 +31,9 @@ class BaseFixture(unittest.TestCase):
             if not os.path.exists(TEST_RESULTS):
                 os.mkdir(TEST_RESULTS)
 
-            pieces: list = self._outcome.result.current_test_id.split('.')
+            pieces: list = self._outcome.result.current_test_id.split('.') \
+                if hasattr(self._outcome.result, 'current_test_id') else self._outcome.result.nodeid.split('::')
+
             test_name = pieces.pop()
 
             folder_path = TEST_RESULTS
