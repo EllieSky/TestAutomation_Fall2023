@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from selenium.webdriver.support.wait import WebDriverWait
@@ -7,7 +8,7 @@ from pages.define_report import DefineReportPage
 from pages.emp_info import EmployeeInfo
 from pages.emp_report import EmployeeReportPage
 from pages.login import LoginPage
-from tests import DOMAIN, DEFAULT_WAIT, BROWSER
+from tests import DOMAIN, DEFAULT_WAIT, BROWSER, TEST_RESULTS
 
 
 class BaseFixture(unittest.TestCase):
@@ -25,6 +26,28 @@ class BaseFixture(unittest.TestCase):
 
 
     def tearDown(self):
+        if ((hasattr(self._outcome, 'errors') and self._outcome.errors[1][1]) or
+                (self._outcome.result.failures and self._outcome.result.failures[0][1])):
+            if not os.path.exists(TEST_RESULTS):
+                os.mkdir(TEST_RESULTS)
+
+            pieces: list = self._outcome.result.current_test_id.split('.')
+            test_name = pieces.pop()
+
+            folder_path = TEST_RESULTS
+            for piece in pieces:
+                folder_path = os.path.join(folder_path, piece)
+                if not os.path.exists(folder_path):
+                    os.mkdir(folder_path)
+
+            screenshot_path = os.path.join(folder_path, f'{test_name}.png')
+            self.browser.save_screenshot(screenshot_path)
+
+            page_src_path = os.path.join(folder_path, f'{test_name}.html')
+            writable_file = open(page_src_path, 'w')
+            writable_file.write(self.browser.page_source)
+            writable_file.close()
+
         self.browser.quit()
 
     # def setUpClass(cls):
