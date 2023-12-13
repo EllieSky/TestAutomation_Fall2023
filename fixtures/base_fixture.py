@@ -23,15 +23,14 @@ class BaseFixture(unittest.TestCase):
         self.define_report = DefineReportPage(self.browser)
         # self.add_emp_page = AddEmployyPage(self.browser)
 
-
-
     def tearDown(self):
         if ((hasattr(self._outcome, 'errors') and self._outcome.errors[1][1]) or
                 (self._outcome.result.failures and self._outcome.result.failures[0][1])):
             if not os.path.exists(TEST_RESULTS):
                 os.mkdir(TEST_RESULTS)
 
-            pieces: list = self._outcome.result.current_test_id.split('.')
+            pieces: list = self._outcome.result.current_test_id.split('.')\
+                if hasattr(self._outcome.result, 'current_test_id') else self._outcome.result.nodeid.split('::')
             test_name = pieces.pop()
 
             folder_path = TEST_RESULTS
