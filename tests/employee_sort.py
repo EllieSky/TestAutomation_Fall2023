@@ -43,8 +43,8 @@ class EmployeeSort(AdminLoginFixture):
         previous_name = ''
         for name in name_elems:
             current_name = name.text
-            self.assertLessEqual(previous_name, current_name)
-            previous_name = current_name
+            self.assertLessEqual(previous_name, current_name.lower())
+            previous_name = current_name.lower()
 
 
 

@@ -5,7 +5,10 @@ from tests import BASE_URL
 
 
 class EmployeeReportPage(BasePage):
-    PAGE_URL = f'{BASE_URL}/core/viewDefinedPredefinedReports'
+    @property
+    def PAGE_URL(self):
+        return f'{BASE_URL}/core/viewDefinedPredefinedReports'
+    # PAGE_URL = f'{BASE_URL}/core/viewDefinedPredefinedReports'
 
     def click_add(self):
         self.browser.find_element(By.ID, 'btnAdd').click()
