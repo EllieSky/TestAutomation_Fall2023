@@ -12,7 +12,6 @@ from tests import DOMAIN, DEFAULT_WAIT, BROWSER, TEST_RESULTS
 
 
 class BaseFixture(unittest.TestCase):
-
     def setUp(self):
         self.browser = get_browser(BROWSER)
         self.wait = WebDriverWait(self.browser, DEFAULT_WAIT)
@@ -22,8 +21,6 @@ class BaseFixture(unittest.TestCase):
         self.emp_report = EmployeeReportPage(self.browser)
         self.define_report = DefineReportPage(self.browser)
         # self.add_emp_page = AddEmployyPage(self.browser)
-
-
 
     def tearDown(self):
         if ((hasattr(self._outcome, 'errors') and self._outcome.errors[1][1]) or
@@ -52,14 +49,17 @@ class BaseFixture(unittest.TestCase):
 
         self.browser.quit()
 
-    # def setUpClass(cls):
-    #     pass
-    #
-    # def tearDownClass(cls):
-    #     pass
+    @classmethod
+    def setUpClass(cls):
+        pass
+
+    @classmethod
+    def tearDownClass(cls):
+        pass
 
 
 class HRMFixture(BaseFixture):
     def setUp(self):
         super().setUp()
-        self.browser.get(DOMAIN)
+        # self.browser.get(DOMAIN)
+        self.login_page.goto_page()

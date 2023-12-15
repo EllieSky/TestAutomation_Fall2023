@@ -7,7 +7,11 @@ from tests import BASE_URL
 
 
 class EmployeeInfo(BasePage):
-    PAGE_URL = f'{BASE_URL}/pim/viewEmployeeList'
+    @property
+    def PAGE_URL(self):
+        return f'{BASE_URL}/pim/viewEmployeeList'
+
+    # PAGE_URL = f'{BASE_URL}/pim/viewEmployeeList'
     PAGE_HEADER = 'Employee Information'
 
     TABLE_HEADERS = [

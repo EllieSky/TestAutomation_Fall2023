@@ -8,7 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class DefineReportPage(BasePage):
-    PAGE_URL = f'{BASE_URL}/core/definePredefinedReport'
+    @property
+    def PAGE_URL(self):
+        return f'{BASE_URL}/core/definePredefinedReport'
+    # PAGE_URL = f'{BASE_URL}/core/definePredefinedReport'
 
     def enter_report_name(self, report_name):
         self.wait.until(EC.presence_of_element_located(
