@@ -9,3 +9,7 @@ Feature: Basic BDD Login
     When I get the text from element id=welcome
     Then the text should be Welcome Admin
 
+
+  Scenario: Using POM - As an admin I should be able to login
+    Given I am loggen in as user "admin" with password "password"
+    Then the welcome message should be "Welcome Admin"
