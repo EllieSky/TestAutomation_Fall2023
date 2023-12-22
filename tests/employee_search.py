@@ -24,6 +24,8 @@ class EmpSearchTests(AdminLoginFixture):
         for name_elem in list_of_first_name_elems:
             self.assertEqual(search_word, name_elem.text)
 
+        self.menu.user.logout()
+
 
 
 if __name__ == '__main__':

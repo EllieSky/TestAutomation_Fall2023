@@ -28,7 +28,7 @@ class BaseMethods:
     def get_text(self, locator: tuple) -> str:
         return self.find_elem(locator).text
 
-    def wait_for_elem_visible(self, locator: tuple, seconds):
+    def wait_for_elem_visible(self, locator: tuple, seconds=DEFAULT_WAIT):
         return WebDriverWait(self.browser, int(seconds)).until(
             EC.visibility_of_element_located(locator))
 

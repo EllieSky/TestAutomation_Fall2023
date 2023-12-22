@@ -11,4 +11,9 @@ def login(context, username=ADMIN_USER, password=PASSWORD):
 
 @step('the welcome message should be "{message}"')
 def check_welcome_message(context, message):
-    assert message == context.user_menu.get_welcome_message()
+    assert message == context.menu.user.get_welcome_message()
+
+
+@step('I logout')
+def logout(context):
+    context.menu.user.logout()

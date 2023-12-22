@@ -13,3 +13,5 @@ Feature: Basic BDD Login
   Scenario: Using POM - As an admin I should be able to login
     Given I am loggen in as user "admin" with password "password"
     Then the welcome message should be "Welcome Admin"
+    When I logout
+    Then the url should contain /auth/login
