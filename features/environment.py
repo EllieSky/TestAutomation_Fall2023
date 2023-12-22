@@ -2,6 +2,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from lib.base_methods import BaseMethods
 from lib.browser import get_browser
+from menus.menu import Menu
 from menus.user_menu import UserMenu
 from pages.page import Page
 from tests import DOMAIN, BROWSER, DEFAULT_WAIT
@@ -18,7 +19,7 @@ def before_scenario(context, scenario):
     context.wait = WebDriverWait(browser, DEFAULT_WAIT)
     context.base_methods = BaseMethods(browser)
     context.page = Page(browser)
-    context.user_menu = UserMenu(browser)
+    context.menu = Menu(browser)
     browser.get(context.url)
 
 

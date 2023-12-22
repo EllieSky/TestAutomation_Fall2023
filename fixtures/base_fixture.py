@@ -4,6 +4,7 @@ import unittest
 from selenium.webdriver.support.wait import WebDriverWait
 
 from lib.browser import get_browser
+from menus.menu import Menu
 from menus.user_menu import UserMenu
 from pages.define_report import DefineReportPage
 from pages.emp_info import EmployeeInfo
@@ -25,7 +26,7 @@ class BaseFixture(unittest.TestCase):
         self.emp_report = EmployeeReportPage(self.browser)
         self.define_report = DefineReportPage(self.browser)
         # self.add_emp_page = AddEmployyPage(self.browser)
-        self.user_menu = UserMenu(self.browser)
+        self.menu = Menu(self.browser)
 
     def tearDown(self):
         if ((hasattr(self._outcome, 'errors') and self._outcome.errors[1][1]) or
