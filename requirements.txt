@@ -3,3 +3,6 @@ Faker==21.0.0
 parameterized~=0.9.0
 webdriver-manager==4.0.1
 behave==1.2.6
+
+requests~=2.31.0
+lxml~=4.9.4
